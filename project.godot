@@ -16,13 +16,18 @@ _global_script_class_icons={
 [application]
 
 config/name="HumanSpiderWeb"
-run/main_scene="res://TestWorld.tscn"
+run/main_scene="res://levels/Tutorial1.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+LevelManager="*res://LevelManager.tscn"
 
 [display]
 
 window/size/width=1200
 window/size/height=800
+window/size/fullscreen=true
 
 [importer_defaults]
 

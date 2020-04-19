@@ -7,7 +7,7 @@ enum STATES {IDLE, PATROL, SEARCH, ATTACK}
 var cur_state = STATES.IDLE
 const ATTACK_RANGE = 300
 
-var move_speed = 100
+export var move_speed = 200
 var patrol_positions = []
 var cur_patrol_ind = 0
 var search_positions = []
@@ -154,18 +154,36 @@ func can_see_player():
 		return nearest_player
 	var space_state = get_world_2d().direct_space_state
 	var num_of_dir_raycasts = 16
-	var angle_increment = 360.0 / 16
+	var angle_increment = deg2rad(100.0 / 16)
+	var offset = deg2rad(-50)
+	if !facing_right:
+		offset += deg2rad(180)
+	#update()
 	for i in range(num_of_dir_raycasts):
-		var result = space_state.intersect_ray(fire_point.global_position, 2000 * Vector2.RIGHT.rotated(i * angle_increment), [self], 1+4)
+		var result = space_state.intersect_ray(fire_point.global_position, 2000 * Vector2.RIGHT.rotated(offset + i * angle_increment), [self], 1+4)
 		if result and "RopeSegment" in result.collider.name and !is_obj_dead(result.collider):
 			return result.collider
 	return null
+
+#func _draw():
+#	var num_of_dir_raycasts = 16
+#	var angle_increment = deg2rad(100.0 / 16)
+#	var offset = deg2rad(-50)
+#	if !facing_right:
+#		offset += deg2rad(180)
+#	for i in range(num_of_dir_raycasts):
+#		var l_pos = to_local(global_position + 2000 * Vector2.RIGHT.rotated(offset + i * angle_increment))
+#		draw_line(Vector2.ZERO, l_pos, Color.red, 2)
 
 func get_nearest_visible_player():
 	var player_nodes = get_tree().get_nodes_in_group("player")
 	var space_state = get_world_2d().direct_space_state
 	var visible_players = []
 	for player_node in player_nodes:
+		if player_node.global_position.x > global_position.x and !facing_right:
+			continue
+		if player_node.global_position.x < global_position.x and facing_right:
+			continue
 		var result = space_state.intersect_ray(fire_point.global_position, player_node.global_position, [self], 1)
 		if !result and !is_obj_dead(player_node):
 			visible_players.append(player_node)
@@ -185,14 +203,18 @@ var goal_pos = null
 func _physics_process(delta):
 	if goal_pos == null:
 		return
-	var path = nav.get_simple_path(global_position, goal_pos)
-	if path.size() > 1:
-		var dir = global_position.direction_to(path[1])
-		move_and_slide(dir * move_speed, Vector2())
-		if dir.x > 0 and !facing_right:
-			flip()
-		if dir.x < 0 and facing_right:
-			flip()
+	var dir = Vector2()
+	if cur_state == STATES.PATROL: #ignore pathfinding in patrol state
+		dir = global_position.direction_to(goal_pos)
+	else:
+		var path = nav.get_simple_path(global_position, goal_pos)
+		if path.size() > 1:
+			dir = global_position.direction_to(path[1])
+	move_and_slide(dir * move_speed, Vector2())
+	if dir.x > 0 and !facing_right:
+		flip()
+	if dir.x < 0 and facing_right:
+		flip()
 
 func move_to_position(pos):
 	goal_pos = pos

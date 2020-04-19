@@ -4,23 +4,23 @@
 [ext_resource path="res://Person.gd" type="Script" id=2]
 [ext_resource path="res://Hitbox.gd" type="Script" id=3]
 
-[sub_resource type="CircleShape2D" id=1]
+[sub_resource type="CircleShape2D" id=6]
 radius = 10.9776
 
 [sub_resource type="Gradient" id=7]
 offsets = PoolRealArray( 0, 0.162963, 0.481481, 0.688889, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.835251, 0.308594, 1, 1, 0.335007, 0.144531, 1, 0.0839844, 0.0357859, 0.0219803, 1, 0.501953, 0.501953, 0.501953, 1 )
 
-[sub_resource type="GradientTexture" id=6]
+[sub_resource type="GradientTexture" id=8]
 gradient = SubResource( 7 )
 
-[sub_resource type="Curve" id=8]
+[sub_resource type="Curve" id=9]
 _data = [ Vector2( 0, 0 ), 0.0, 4.91678, 0, 0, Vector2( 1, 0 ), -1.21193, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=9]
-curve = SubResource( 8 )
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
 
-[sub_resource type="ParticlesMaterial" id=10]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 2
 emission_box_extents = Vector3( 10, 30, 1 )
 flag_disable_z = true
@@ -28,8 +28,8 @@ gravity = Vector3( 0, -20, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-scale_curve = SubResource( 9 )
-color_ramp = SubResource( 6 )
+scale_curve = SubResource( 10 )
+color_ramp = SubResource( 8 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "die"
@@ -393,7 +393,7 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id=12]
 radius = 14.4434
 height = 69.345
 
@@ -405,11 +405,11 @@ mode = 2
 gravity_scale = 0.0
 linear_damp = 30.0
 script = ExtResource( 2 )
-move_force = 10.0
+move_force = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -10.5421 )
-shape = SubResource( 1 )
+shape = SubResource( 6 )
 
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2( 0.174332, 0 )
@@ -427,7 +427,7 @@ amount = 32
 lifetime = 2.0
 speed_scale = 2.0
 local_coords = false
-process_material = SubResource( 10 )
+process_material = SubResource( 11 )
 
 [node name="ArmUL" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
@@ -515,7 +515,7 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -46.2653 )
-shape = SubResource( 2 )
+shape = SubResource( 12 )
 
 [node name="StartFireTimer" type="Timer" parent="."]
 wait_time = 2.0

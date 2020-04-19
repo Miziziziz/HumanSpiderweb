@@ -4,8 +4,9 @@ var people = []
 var active_ind = 0
 
 onready var cam = $Camera2D
-
+var default_zoom_level = 1.2
 func _ready():
+	cam.zoom = Vector2.ONE * default_zoom_level
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	for child in get_children():
 		if "is_active" in child:

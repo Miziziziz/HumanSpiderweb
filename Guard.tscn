@@ -232,7 +232,6 @@ region_rect = Rect2( 219, 116, 25, 26 )
 show_behind_parent = true
 position = Vector2( 6.48826, 17.4628 )
 rotation = 0.345957
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 14.195, 1.781 )
 region_enabled = true
@@ -258,7 +257,6 @@ cast_to = Vector2( 1000, 0 )
 [node name="LegUL" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
 position = Vector2( 5.92303, 18.3491 )
-scale = Vector2( 1, 1 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 7.5 )
 region_enabled = true
