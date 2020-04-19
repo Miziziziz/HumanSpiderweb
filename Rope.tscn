@@ -1,0 +1,93 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://RopeSegment.tscn" type="PackedScene" id=1]
+
+[node name="Rope" type="Node2D"]
+
+[node name="RopeSegment" parent="." instance=ExtResource( 1 )]
+
+[node name="PinJoint2DA" parent="RopeSegment" index="2"]
+node_b = NodePath("..")
+
+[node name="RopeSegment2" parent="." instance=ExtResource( 1 )]
+position = Vector2( -30.1829, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment2" index="2"]
+node_a = NodePath("../../RopeSegment")
+node_b = NodePath("..")
+
+[node name="RopeSegment3" parent="." instance=ExtResource( 1 )]
+position = Vector2( -49.1063, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment3" index="2"]
+node_a = NodePath("../../RopeSegment2")
+node_b = NodePath("..")
+
+[node name="RopeSegment4" parent="." instance=ExtResource( 1 )]
+position = Vector2( -67.4744, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment4" index="2"]
+node_a = NodePath("../../RopeSegment3")
+node_b = NodePath("..")
+
+[node name="RopeSegment5" parent="." instance=ExtResource( 1 )]
+position = Vector2( -86.0608, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment5" index="2"]
+node_a = NodePath("../../RopeSegment4")
+node_b = NodePath("..")
+
+[node name="RopeSegment6" parent="." instance=ExtResource( 1 )]
+position = Vector2( -105.752, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment6" index="2"]
+node_a = NodePath("../../RopeSegment5")
+node_b = NodePath("..")
+
+[node name="RopeSegment7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -125.626, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment7" index="2"]
+node_a = NodePath("../../RopeSegment6")
+node_b = NodePath("..")
+
+[node name="RopeSegment8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -144.397, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment8" index="2"]
+node_a = NodePath("../../RopeSegment7")
+node_b = NodePath("..")
+
+[node name="RopeSegment9" parent="." instance=ExtResource( 1 )]
+position = Vector2( -162.984, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment9" index="2"]
+node_a = NodePath("../../RopeSegment8")
+node_b = NodePath("..")
+
+[node name="RopeSegment10" parent="." instance=ExtResource( 1 )]
+position = Vector2( -182.306, 0 )
+
+[node name="PinJoint2DA" parent="RopeSegment10" index="2"]
+node_a = NodePath("../../RopeSegment9")
+node_b = NodePath("..")
+
+[editable path="RopeSegment"]
+
+[editable path="RopeSegment2"]
+
+[editable path="RopeSegment3"]
+
+[editable path="RopeSegment4"]
+
+[editable path="RopeSegment5"]
+
+[editable path="RopeSegment6"]
+
+[editable path="RopeSegment7"]
+
+[editable path="RopeSegment8"]
+
+[editable path="RopeSegment9"]
+
+[editable path="RopeSegment10"]

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sprites/human_spiderweb_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Sprite.gd" type="Script" id=2]
+[ext_resource path="res://Flame.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="Flame" type="Area2D" groups=[
+"instanced",
+]]
+collision_layer = 0
+collision_mask = 9
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.257027, -1.67066 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 270, 132, 23, 27 )
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="DestroyTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="DestroyTimer" to="." method="queue_free"]

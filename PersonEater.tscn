@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://sprites/human_spiderweb_sprites.png" type="Texture" id=1]
+[ext_resource path="res://PersonEater.gd" type="Script" id=2]
+[ext_resource path="res://Hitbox.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 10.2067
+height = 22.3435
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 14.9034
+height = 28.5423
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 19.507
+height = 24.4097
+
+[sub_resource type="Gradient" id=7]
+offsets = PoolRealArray( 0, 0.162963, 0.481481, 0.688889, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.835251, 0.308594, 1, 1, 0.335007, 0.144531, 1, 0.0839844, 0.0357859, 0.0219803, 1, 0.501953, 0.501953, 0.501953, 1 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 7 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0, 0 ), 0.0, 4.91678, 0, 0, Vector2( 1, 0 ), -1.21193, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 2
+emission_box_extents = Vector3( 10, 30, 1 )
+flag_disable_z = true
+gravity = Vector3( 0, -20, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 6 )
+
+[node name="PersonEater" type="RigidBody2D" groups=[
+"player",
+]]
+collision_layer = 2
+mass = 0.01
+linear_damp = 30.0
+script = ExtResource( 2 )
+
+[node name="Graphics" type="Node2D" parent="."]
+
+[node name="Body" type="Sprite" parent="Graphics"]
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 115, 86, 25, 45 )
+
+[node name="Head" type="RigidBody2D" parent="."]
+position = Vector2( 0, -18.8882 )
+collision_layer = 2
+mass = 0.01
+gravity_scale = 0.0
+linear_damp = 30.0
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="Head"]
+node_a = NodePath("..")
+node_b = NodePath("../..")
+
+[node name="HeadSprite" type="Sprite" parent="Head"]
+position = Vector2( 0, -3.99228 )
+texture = ExtResource( 1 )
+offset = Vector2( 0, -4.619 )
+region_enabled = true
+region_rect = Rect2( 115, 63, 18, 20 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Head"]
+position = Vector2( 0, -8.14228 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 1.35598 )
+shape = SubResource( 2 )
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2( 0, -5.81134 )
+shape = SubResource( 3 )
+
+[node name="FoodDetector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FoodDetector"]
+position = Vector2( 0, -6.89699 )
+shape = SubResource( 4 )
+
+[node name="Fire" type="Particles2D" parent="."]
+position = Vector2( -0.632668, -4.14132 )
+emitting = false
+amount = 32
+lifetime = 2.0
+speed_scale = 2.0
+local_coords = false
+process_material = SubResource( 10 )
+
+[node name="FinishFireTimer" type="Timer" parent="."]
+one_shot = true

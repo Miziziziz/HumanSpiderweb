@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://sprites/human_spiderweb_sprites.png" type="Texture" id=1]
+[ext_resource path="res://Food.gd" type="Script" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 14.7985
+
+[node name="Food" type="Area2D"]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 4.41782, -2.84003 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 145, 161, 36, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
