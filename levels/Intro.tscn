@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://TextDisplay.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Label:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[node name="TextDisplay" type="CanvasLayer"]
+script = ExtResource( 1 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -568.5
+margin_top = -66.5
+margin_right = 568.5
+margin_bottom = 66.5
+text = "The Story so far:
+
+The radiation sheilding on the colony cracked; all the colonists have developing life-threatening tumors!
+In an emergency procedure, the colony's surgeon removed their cancerous limbs and organs, and stitched them together to share vital organs until an organ printer can be made.
+
+Unfortunately, space pirates have just invaded! All the colonists need to escape however they can.
+
+PRESS ENTER TO CONTINUE"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fadein"
+anims/fadein = SubResource( 1 )

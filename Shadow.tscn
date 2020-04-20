@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://sprites/shadowsprite.png" type="Texture" id=1]
+
+[node name="Shadow" type="Sprite"]
+modulate = Color( 0.152941, 0.152941, 0.152941, 0.623529 )
+z_index = -2
+z_as_relative = false
+texture = ExtResource( 1 )

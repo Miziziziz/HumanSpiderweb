@@ -1,7 +1,7 @@
 extends Area2D
 
 
-var speed = 200
+var speed = 500
 
 func _ready():
 	connect("body_entered", self, "burn_target")

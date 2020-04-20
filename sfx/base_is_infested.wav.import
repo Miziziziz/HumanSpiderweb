@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/base_is_infested.wav-d394894e165d69dd05067e0542527001.sample"
+
+[deps]
+
+source_file="res://sfx/base_is_infested.wav"
+dest_files=[ "res://.import/base_is_infested.wav-d394894e165d69dd05067e0542527001.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

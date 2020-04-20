@@ -1,117 +1,13 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://sprites/door_tiles_2.png" type="Texture" id=1]
+[ext_resource path="res://tileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Rope.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Person.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PersonManager.gd" type="Script" id=4]
-[ext_resource path="res://sprites/floor_tile.png" type="Texture" id=5]
 [ext_resource path="res://PersonEater.tscn" type="PackedScene" id=6]
-[ext_resource path="res://sprites/roof_tile.png" type="Texture" id=7]
 [ext_resource path="res://sprites/stomachui.png" type="Texture" id=8]
 [ext_resource path="res://StomachUI.gd" type="Script" id=9]
 [ext_resource path="res://EndZone.tscn" type="PackedScene" id=10]
-
-[sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, 80, 0, 80, 148, 0, 148 )
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 0, 0, 80, 0, 80, 148, 0, 148 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 0, 0, 80, 0, 80, 80, 0, 80 )
-
-[sub_resource type="TileSet" id=4]
-2/name = "floor_tile.png 2"
-2/texture = ExtResource( 5 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 80, 80 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = -2
-3/name = "door_tiles_2.png 3"
-3/texture = ExtResource( 1 )
-3/tex_offset = Vector2( 0, 60 )
-3/modulate = Color( 1, 1, 1, 1 )
-3/region = Rect2( 141, 70, 0, 0 )
-3/tile_mode = 0
-3/occluder_offset = Vector2( 0, 0 )
-3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
-3/shapes = [  ]
-3/z_index = 1
-5/name = "door_tiles_2.png 5"
-5/texture = ExtResource( 1 )
-5/tex_offset = Vector2( 0, -108 )
-5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 80, 0, 80, 188 )
-5/tile_mode = 0
-5/occluder_offset = Vector2( 0, 0 )
-5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, -108 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, -108 )
-5/shape = SubResource( 1 )
-5/shape_one_way = false
-5/shape_one_way_margin = 1.0
-5/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -108 )
-} ]
-5/z_index = -1
-6/name = "door_tiles_2.png 6"
-6/texture = ExtResource( 1 )
-6/tex_offset = Vector2( 0, -108 )
-6/modulate = Color( 1, 1, 1, 1 )
-6/region = Rect2( 0, 0, 80, 188 )
-6/tile_mode = 0
-6/occluder_offset = Vector2( 0, 0 )
-6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, -108 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, -108 )
-6/shape = SubResource( 2 )
-6/shape_one_way = false
-6/shape_one_way_margin = 1.0
-6/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, -108 )
-} ]
-6/z_index = -1
-7/name = "roof_tile.png 7"
-7/texture = ExtResource( 7 )
-7/tex_offset = Vector2( 0, 0 )
-7/modulate = Color( 1, 1, 1, 1 )
-7/region = Rect2( 0, 0, 80, 80 )
-7/tile_mode = 0
-7/occluder_offset = Vector2( 0, 0 )
-7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, 0 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-7/shape = SubResource( 3 )
-7/shape_one_way = false
-7/shape_one_way_margin = 1.0
-7/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
-} ]
-7/z_index = 0
 
 [sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 793.891, 260, 993.891, 420, -86.1092, 420, 113.891, 260, 993.891, -220, 793.891, 20, -86.1092, -220, 113.891, 20 )
@@ -121,10 +17,10 @@ outlines = [ PoolVector2Array( -86.1092, -220, 993.891, -220, 993.891, 420, -86.
 [node name="World" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 4 )
+tile_set = ExtResource( 1 )
 cell_size = Vector2( 80, 80 )
 format = 1
-tile_data = PoolIntArray( -393215, 7, 0, -393214, 7, 0, -393213, 7, 0, -393212, 7, 0, -393211, 7, 0, -393210, 7, 0, -327679, 7, 0, -327674, 7, 0, -262143, 7, 0, -262142, 5, 0, -262141, 6, 0, -262140, 5, 0, -262139, 5, 0, -262138, 7, 0, -196607, 7, 0, -196606, 2, 0, -196605, 2, 0, -196604, 2, 0, -196603, 2, 0, -196602, 7, 0, -131071, 7, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131067, 2, 0, -131066, 7, 0, -65535, 7, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 7, 0, 1, 7, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 7, 0, 65537, 7, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 7, 0, 131073, 7, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 7, 0, 196609, 7, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 7, 0, 262145, 7, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 7, 0, 327681, 7, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 7, 0, 393217, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 458753, 5, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 5, 0 )
+tile_data = PoolIntArray( -393215, 8, 0, -393214, 8, 0, -393213, 8, 0, -393212, 8, 0, -393211, 8, 0, -393210, 8, 0, -327679, 7, 0, -327674, 7, 0, -262143, 7, 0, -262142, 5, 0, -262141, 6, 0, -262140, 5, 0, -262139, 5, 0, -262138, 7, 0, -196607, 7, 0, -196606, 2, 0, -196605, 2, 0, -196604, 2, 0, -196603, 2, 0, -196602, 7, 0, -131071, 7, 0, -131070, 2, 0, -131069, 2, 0, -131068, 2, 0, -131067, 2, 0, -131066, 7, 0, -65535, 7, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 7, 0, 1, 7, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 7, 0, 65537, 7, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 7, 0, 131073, 7, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 7, 0, 196609, 7, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 7, 0, 262145, 7, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 7, 0, 327681, 7, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 7, 0, 393217, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 458753, 5, 0, 458754, 5, 0, 458755, 5, 0, 458756, 5, 0, 458757, 5, 0, 458758, 5, 0 )
 
 [node name="How to move" type="Label" parent="."]
 anchor_left = 0.5

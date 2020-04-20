@@ -1,26 +1,27 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://sprites/human_spiderweb_sprites.png" type="Texture" id=1]
 [ext_resource path="res://Person.gd" type="Script" id=2]
 [ext_resource path="res://Hitbox.gd" type="Script" id=3]
+[ext_resource path="res://Shadow.tscn" type="PackedScene" id=4]
 
-[sub_resource type="CircleShape2D" id=6]
+[sub_resource type="CircleShape2D" id=1]
 radius = 10.9776
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=2]
 offsets = PoolRealArray( 0, 0.162963, 0.481481, 0.688889, 1 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 0.835251, 0.308594, 1, 1, 0.335007, 0.144531, 1, 0.0839844, 0.0357859, 0.0219803, 1, 0.501953, 0.501953, 0.501953, 1 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
 
-[sub_resource type="Curve" id=9]
+[sub_resource type="Curve" id=4]
 _data = [ Vector2( 0, 0 ), 0.0, 4.91678, 0, 0, Vector2( 1, 0 ), -1.21193, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=10]
-curve = SubResource( 9 )
+[sub_resource type="CurveTexture" id=5]
+curve = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=11]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 10, 30, 1 )
 flag_disable_z = true
@@ -28,11 +29,10 @@ gravity = Vector3( 0, -20, 0 )
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-scale_curve = SubResource( 10 )
-color_ramp = SubResource( 8 )
+scale_curve = SubResource( 5 )
+color_ramp = SubResource( 3 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "die"
+[sub_resource type="Animation" id=7]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Body:rotation_degrees")
@@ -143,8 +143,7 @@ tracks/8/keys = {
 "values": [ -30.4078 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "idle"
+[sub_resource type="Animation" id=8]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -268,8 +267,7 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "walk"
+[sub_resource type="Animation" id=9]
 loop = true
 step = 0.25
 tracks/0/type = "value"
@@ -393,9 +391,25 @@ tracks/9/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=12]
+[sub_resource type="CapsuleShape2D" id=10]
 radius = 14.4434
 height = 69.345
+
+[sub_resource type="Animation" id=11]
+resource_name = "bob"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Polygon2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -112 ), Vector2( 0, -96 ) ]
+}
 
 [node name="Person" type="RigidBody2D" groups=[
 "player",
@@ -409,10 +423,13 @@ move_force = 20.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -10.5421 )
-shape = SubResource( 6 )
+shape = SubResource( 1 )
 
 [node name="Graphics" type="Node2D" parent="."]
 position = Vector2( 0.174332, 0 )
+
+[node name="Shadow" parent="Graphics" instance=ExtResource( 4 )]
+position = Vector2( -0.174332, 0 )
 
 [node name="Body" type="Sprite" parent="Graphics"]
 position = Vector2( -3.865, -60.895 )
@@ -427,7 +444,7 @@ amount = 32
 lifetime = 2.0
 speed_scale = 2.0
 local_coords = false
-process_material = SubResource( 11 )
+process_material = SubResource( 6 )
 
 [node name="ArmUL" type="Sprite" parent="Graphics/Body"]
 show_behind_parent = true
@@ -504,9 +521,9 @@ region_rect = Rect2( 98, 64, 15, 18 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Graphics"]
 autoplay = "idle"
-anims/die = SubResource( 5 )
-anims/idle = SubResource( 3 )
-anims/walk = SubResource( 4 )
+anims/die = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/walk = SubResource( 9 )
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 8
@@ -515,8 +532,24 @@ script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2( 0, -46.2653 )
-shape = SubResource( 12 )
+shape = SubResource( 10 )
 
 [node name="StartFireTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
+
+[node name="Indicator" type="Node2D" parent="."]
+
+[node name="Polygon2D" type="Polygon2D" parent="Indicator"]
+position = Vector2( 0, -112 )
+color = Color( 0.266667, 0.984314, 0.00784314, 1 )
+polygon = PoolVector2Array( 16, -16, 0, 0, -16, -16 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Indicator"]
+autoplay = "bob"
+anims/bob = SubResource( 11 )
+
+[node name="HideIndicator" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+[connection signal="timeout" from="HideIndicator" to="Indicator" method="hide"]

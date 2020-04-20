@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/nuke_it_from_orbit.wav-7f5bd87d5335aa6df0cb2eafe412e07c.sample"
+
+[deps]
+
+source_file="res://sfx/nuke_it_from_orbit.wav"
+dest_files=[ "res://.import/nuke_it_from_orbit.wav-7f5bd87d5335aa6df0cb2eafe412e07c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,253 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://PersonManager.gd" type="Script" id=2]
+[ext_resource path="res://StomachUI.gd" type="Script" id=3]
+[ext_resource path="res://sprites/stomachui.png" type="Texture" id=4]
+[ext_resource path="res://PersonEater.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Food.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Person.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Rope.tscn" type="PackedScene" id=8]
+[ext_resource path="res://EndZone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://LockedDoor.tscn" type="PackedScene" id=10]
+
+[sub_resource type="NavigationPolygon" id=1]
+vertices = PoolVector2Array( 793.891, 260, 993.891, 420, -86.1092, 420, 113.891, 260, 993.891, -220, 793.891, 20, -86.1092, -220, 113.891, 20 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ), PoolIntArray( 4, 1, 0, 5 ), PoolIntArray( 6, 4, 5, 7 ), PoolIntArray( 2, 6, 7, 3 ) ]
+outlines = [ PoolVector2Array( -86.1092, -220, 993.891, -220, 993.891, 420, -86.1092, 420 ), PoolVector2Array( 113.891, 20, 793.891, 20, 793.891, 260, 113.891, 260 ) ]
+
+[node name="World" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 80, 80 )
+format = 1
+tile_data = PoolIntArray( -524284, 8, 0, -524280, 8, 0, -458748, 7, 0, -458744, 7, 0, -393212, 7, 0, -393211, 5, 0, -393210, 6, 0, -393209, 5, 0, -393208, 7, 0, -327676, 7, 0, -327675, 2, 0, -327674, 2, 0, -327673, 2, 0, -327672, 7, 0, -196613, 8, 0, -262140, 7, 0, -262139, 2, 0, -262138, 2, 0, -262137, 2, 0, -262136, 7, 0, -262130, 8, 0, -131077, 7, 0, -196603, 2, 0, -196602, 2, 0, -196601, 2, 0, -196594, 7, 0, -65541, 7, 0, -65540, 5, 0, -65539, 5, 0, -65538, 5, 0, -65537, 5, 0, -131072, 5, 0, -131071, 5, 0, -131070, 5, 0, -131069, 5, 0, -131068, 5, 0, -131067, 2, 0, -131066, 2, 0, -131065, 2, 0, -131064, 5, 0, -131063, 5, 0, -131062, 5, 0, -131061, 5, 0, -131060, 5, 0, -131059, 5, 0, -131058, 7, 0, -5, 7, 0, -4, 2, 0, -3, 2, 0, -2, 2, 0, -1, 2, 0, -65536, 2, 0, -65535, 2, 0, -65534, 2, 0, -65533, 2, 0, -65532, 2, 0, -65531, 2, 0, -65530, 2, 0, -65529, 2, 0, -65528, 2, 0, -65527, 2, 0, -65526, 2, 0, -65525, 2, 0, -65524, 2, 0, -65523, 2, 0, -65522, 7, 0, 65531, 7, 0, 65532, 2, 0, 65533, 2, 0, 65534, 2, 0, 65535, 2, 0, 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 7, 0, 131067, 7, 0, 131068, 2, 0, 131069, 2, 0, 131070, 2, 0, 131071, 2, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 65543, 2, 0, 65544, 7, 0, 65545, 7, 0, 65546, 2, 0, 65547, 2, 0, 65548, 2, 0, 65549, 2, 0, 65550, 7, 0, 196607, 7, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 7, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131081, 7, 0, 131082, 2, 0, 131083, 2, 0, 131084, 2, 0, 131085, 2, 0, 131086, 7, 0, 262139, 5, 0, 262140, 5, 0, 262141, 5, 0, 262142, 5, 0, 262143, 7, 0, 196608, 2, 0, 196609, 2, 0, 196610, 5, 0, 196611, 7, 0, 196612, 5, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 5, 0, 196617, 7, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 7, 0, 327679, 7, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 7, 0, 262148, 2, 0, 262149, 2, 0, 262150, 2, 0, 262151, 2, 0, 262152, 2, 0, 262153, 7, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 7, 0, 393215, 7, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 7, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 2, 0, 327689, 7, 0, 327690, 2, 0, 327691, 2, 0, 327692, 2, 0, 327693, 2, 0, 327694, 7, 0, 458751, 7, 0, 393216, 2, 0, 393217, 2, 0, 393218, 2, 0, 393219, 7, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 7, 0, 393226, 2, 0, 393227, 2, 0, 393228, 2, 0, 393229, 2, 0, 393230, 7, 0, 524287, 7, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458761, 7, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 7, 0, 589823, 7, 0, 524288, 2, 0, 524289, 2, 0, 524290, 2, 0, 524291, 5, 0, 524292, 5, 0, 524293, 5, 0, 524294, 5, 0, 524295, 5, 0, 524296, 5, 0, 524297, 7, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 7, 0, 655359, 7, 0, 589824, 2, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 7, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 7, 0, 720895, 7, 0, 655360, 2, 0, 655361, 2, 0, 655362, 2, 0, 655363, 2, 0, 655364, 2, 0, 655365, 2, 0, 655366, 2, 0, 655367, 2, 0, 655368, 2, 0, 655369, 7, 0, 655370, 2, 0, 655371, 2, 0, 655372, 2, 0, 655373, 2, 0, 655374, 7, 0, 720897, 2, 0, 720898, 2, 0, 720899, 2, 0, 720900, 2, 0, 720901, 2, 0, 720902, 2, 0, 720903, 2, 0, 720904, 2, 0, 720905, 2, 0, 720906, 2, 0, 720907, 2, 0, 720908, 2, 0, 720909, 2, 0, 720910, 2, 0, 851967, 5, 0, 786432, 5, 0, 786433, 5, 0, 786434, 5, 0, 786435, 5, 0, 786436, 5, 0, 786437, 5, 0, 786438, 5, 0, 786439, 5, 0, 786440, 5, 0, 786441, 5, 0, 786442, 5, 0, 786443, 5, 0, 786444, 5, 0, 786445, 5, 0, 786446, 5, 0 )
+
+[node name="Food3" parent="." instance=ExtResource( 6 )]
+position = Vector2( 560, 40 )
+
+[node name="Food4" parent="." instance=ExtResource( 6 )]
+position = Vector2( 480, 80 )
+
+[node name="Food5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 160, 120 )
+
+[node name="LockedDoor" parent="." instance=ExtResource( 10 )]
+position = Vector2( 20, -220 )
+
+[node name="RetinaScanner" parent="LockedDoor/Scanners" index="0"]
+position = Vector2( 180, 460 )
+
+[node name="RetinaScanner2" parent="LockedDoor/Scanners" index="1"]
+position = Vector2( 660, 60 )
+
+[node name="LaserDoor" parent="LockedDoor" index="1"]
+position = Vector2( 500, 420 )
+
+[node name="LockedDoor2" parent="." instance=ExtResource( 10 )]
+position = Vector2( 20, -220 )
+
+[node name="RetinaScanner" parent="LockedDoor2/Scanners" index="0"]
+position = Vector2( 340, 460 )
+
+[node name="RetinaScanner2" parent="LockedDoor2/Scanners" index="1"]
+position = Vector2( 420, 860 )
+
+[node name="LaserDoor" parent="LockedDoor2" index="1"]
+position = Vector2( 500, 80 )
+
+[node name="PersonManager" type="Node2D" parent="."]
+position = Vector2( 480, 280 )
+script = ExtResource( 2 )
+
+[node name="Person" parent="PersonManager" instance=ExtResource( 7 )]
+position = Vector2( 400, -180 )
+
+[node name="Person2" parent="PersonManager" instance=ExtResource( 7 )]
+position = Vector2( 649.627, -159.545 )
+
+[node name="PersonEater" parent="PersonManager" instance=ExtResource( 5 )]
+position = Vector2( 507.244, 300.408 )
+rotation = 0.0371319
+
+[node name="PinJoint2D2" type="PinJoint2D" parent="PersonManager/PersonEater"]
+position = Vector2( 5.73578, 12.1885 )
+node_a = NodePath("../../Rope4/RopeSegment10")
+node_b = NodePath("..")
+
+[node name="PinJoint2D" type="PinJoint2D" parent="PersonManager/PersonEater"]
+position = Vector2( 5.73578, 12.1885 )
+node_a = NodePath("../../Rope6/RopeSegment10")
+node_b = NodePath("..")
+
+[node name="Rope" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 400.377, -233.585 )
+rotation = -1.60832
+
+[node name="PinJoint2DA" parent="PersonManager/Rope/RopeSegment" index="2"]
+node_a = NodePath("../../../Person")
+
+[node name="Rope3" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 407.331, -43.6448 )
+rotation = -1.60832
+
+[node name="PinJoint2DA" parent="PersonManager/Rope3/RopeSegment" index="2"]
+node_a = NodePath("../../../Rope/RopeSegment10")
+
+[node name="Rope4" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 413.769, 146.835 )
+rotation = -2.10517
+
+[node name="PinJoint2DA" parent="PersonManager/Rope4/RopeSegment" index="2"]
+node_a = NodePath("../../../Rope3/RopeSegment10")
+
+[node name="Rope2" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 650.875, -214.628 )
+rotation = -1.46825
+
+[node name="PinJoint2DA" parent="PersonManager/Rope2/RopeSegment" index="2"]
+node_a = NodePath("../../../Person2")
+
+[node name="Rope5" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 630.583, -24.9185 )
+rotation = -1.61072
+
+[node name="PinJoint2DA" parent="PersonManager/Rope5/RopeSegment" index="2"]
+node_a = NodePath("../../../Rope2/RopeSegment10")
+
+[node name="Rope6" parent="PersonManager" instance=ExtResource( 8 )]
+position = Vector2( 637.768, 167.875 )
+rotation = -0.85889
+
+[node name="PinJoint2DA" parent="PersonManager/Rope6/RopeSegment" index="2"]
+node_a = NodePath("../../../Rope5/RopeSegment10")
+
+[node name="Camera2D" type="Camera2D" parent="PersonManager"]
+current = true
+
+[node name="PlayerUI" type="CanvasLayer" parent="PersonManager"]
+scale = Vector2( 2, 2 )
+transform = Transform2D( 2, 0, 0, 2, 0, 0 )
+
+[node name="Stomach" type="TextureRect" parent="PersonManager/PlayerUI"]
+margin_right = 62.0
+margin_bottom = 73.0
+texture = ExtResource( 4 )
+stretch_mode = 1
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ColorRect" parent="PersonManager/PlayerUI/Stomach"]
+show_behind_parent = true
+margin_left = 12.0
+margin_top = 15.0
+margin_right = 53.0
+margin_bottom = 61.0
+color = Color( 0.0862745, 0.25098, 0.12549, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StomachBar" type="ColorRect" parent="PersonManager/PlayerUI/Stomach"]
+show_behind_parent = true
+margin_left = 12.0
+margin_top = 56.0
+margin_right = 53.0
+margin_bottom = 61.0
+color = Color( 0.741176, 0.317647, 0.352941, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayerUI2" type="CanvasLayer" parent="PersonManager"]
+
+[node name="RestartMessage" type="Label" parent="PersonManager/PlayerUI2"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -58.0
+margin_top = -7.0
+margin_right = 58.0
+margin_bottom = 7.0
+text = "Press 'X' to restart"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PersonManager/PlayerUI2/RestartMessage"]
+show_behind_parent = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 5.0
+margin_bottom = 5.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Navigation2D" type="Navigation2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="NavigationPolygonInstance" type="NavigationPolygonInstance" parent="Navigation2D"]
+visible = false
+position = Vector2( 106.109, 0 )
+navpoly = SubResource( 1 )
+
+[node name="SearchPositions" type="Node2D" parent="."]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Position2D" type="Position2D" parent="SearchPositions" groups=[
+"search_positions",
+]]
+position = Vector2( 580, 340 )
+
+[node name="Position2D2" type="Position2D" parent="SearchPositions" groups=[
+"search_positions",
+]]
+position = Vector2( 1000, -40 )
+
+[node name="Position2D3" type="Position2D" parent="SearchPositions" groups=[
+"search_positions",
+]]
+position = Vector2( 100, -40 )
+
+[node name="EndZone" parent="." instance=ExtResource( 9 )]
+position = Vector2( 520, -380 )
+
+[editable path="LockedDoor"]
+
+[editable path="LockedDoor2"]
+
+[editable path="PersonManager/PersonEater"]
+
+[editable path="PersonManager/Rope"]
+
+[editable path="PersonManager/Rope/RopeSegment"]
+
+[editable path="PersonManager/Rope3"]
+
+[editable path="PersonManager/Rope3/RopeSegment"]
+
+[editable path="PersonManager/Rope4"]
+
+[editable path="PersonManager/Rope4/RopeSegment"]
+
+[editable path="PersonManager/Rope2"]
+
+[editable path="PersonManager/Rope2/RopeSegment"]
+
+[editable path="PersonManager/Rope5"]
+
+[editable path="PersonManager/Rope5/RopeSegment"]
+
+[editable path="PersonManager/Rope6"]
+
+[editable path="PersonManager/Rope6/RopeSegment"]

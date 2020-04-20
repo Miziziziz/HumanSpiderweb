@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/colony_secured.wav-8ac89dcff907d19faf075b98e3a7f3c8.sample"
+
+[deps]
+
+source_file="res://sfx/colony_secured.wav"
+dest_files=[ "res://.import/colony_secured.wav-8ac89dcff907d19faf075b98e3a7f3c8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

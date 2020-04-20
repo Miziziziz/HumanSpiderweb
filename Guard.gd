@@ -14,6 +14,9 @@ var search_positions = []
 var cur_search_positions = []
 var cur_search_ind = 0
 func _ready():
+	if !facing_right:
+		facing_right = true
+		flip()
 	var search_nodes = get_tree().get_nodes_in_group("search_positions")
 	for search_node in search_nodes:
 		search_positions.append(search_node.global_position)
@@ -21,6 +24,8 @@ func _ready():
 		for child in get_node("PatrolNodes").get_children():
 			patrol_positions.append(child.global_position)
 			set_state_patrol()
+	else:
+		set_state_idle()
 
 func _process(delta):
 	match cur_state:
@@ -52,6 +57,8 @@ func set_state_search():
 var attack_target = null
 var last_known_enemy_position = Vector2()
 func set_state_attack(target):
+	if cur_state == STATES.IDLE or cur_state == STATES.PATROL:
+		$WtfSounds.play()
 	anim_player.play("idle")
 	move_to_position(null)
 	cur_state = STATES.ATTACK
@@ -100,7 +107,7 @@ func process_state_search(delta):
 		cur_search_ind += 1
 		cur_search_ind %= cur_search_positions.size()
 
-var attack_rate = 0.1
+var attack_rate = 0.05
 var cur_attack_time = 0.0
 onready var arms_base = $Graphics/Body/Armbase
 onready var fire_point = $Graphics/Body/Armbase/ArmUR/ArmLR/Gun/Firepoint
@@ -144,6 +151,8 @@ func attack():
 	else:
 		fire_inst.global_rotation = -fire_point.global_rotation
 	fire_inst.init()
+	if !$FireSound.playing:
+		$FireSound.play()
 
 func set_last_known_enemy_position(pos: Vector2):
 	last_known_enemy_position = pos
@@ -232,7 +241,7 @@ func get_closest_search_position():
 func reached_point(pos: Vector2):
 	return global_position.distance_squared_to(pos) < 100*100
 
-var facing_right = true
+export var facing_right = true
 func flip():
 	$Graphics.scale.x *= -1
 	facing_right = !facing_right

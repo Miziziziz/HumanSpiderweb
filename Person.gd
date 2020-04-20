@@ -16,13 +16,17 @@ func _ready():
 	$StartFireTimer.connect("timeout", self, "finish_burn")
 
 func set_person_active():
+	$Indicator.show()
+	$HideIndicator.start()
 	is_active = true
 	mass = 0.1
 	last_pos = global_position
 
 func set_person_inactive():
+	$Indicator.hide()
 	is_active = false
 	mass = 0.01
+	anim_player.play("idle")
 
 var last_pos = Vector2()
 func _physics_process(delta):
@@ -57,7 +61,9 @@ func flip():
 	$Graphics.scale.x *= -1
 	facing_right = !facing_right
 
+var on_fire = false
 func burn():
+	on_fire = true
 	die()
 
 func die():
@@ -67,8 +73,9 @@ func die():
 	is_dead = true
 	$CollisionShape2D.call_deferred("set_disabled", true)
 	$Hitbox/CollisionShape2D.call_deferred("set_disabled", true)
-	$StartFireTimer.start()
-	$Graphics/Body/Fire.emitting = true
+	if on_fire:
+		$StartFireTimer.start()
+		$Graphics/Body/Fire.emitting = true
 	emit_signal("dead")
 
 func finish_burn():

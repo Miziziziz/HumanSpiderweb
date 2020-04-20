@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/wtf1.wav-051231ad8a539e2dc90aa9ffb488a912.sample"
+
+[deps]
+
+source_file="res://sfx/wtf1.wav"
+dest_files=[ "res://.import/wtf1.wav-051231ad8a539e2dc90aa9ffb488a912.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
